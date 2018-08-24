@@ -23,6 +23,7 @@ class MainScreen extends StatelessWidget {
       title: 'Flutter Sticky Header example',
       child: new Builder(builder: (BuildContext context) {
         return new CustomScrollView(
+          reverse: true,
           slivers: _buildSlivers(context),
         );
       }),
@@ -35,16 +36,6 @@ class MainScreen extends StatelessWidget {
     //slivers.add(_buildExample());
     //slivers.add(_buildBuilderExample());
     int i = 0;
-    slivers.add(SliverAppBar(
-      backgroundColor: Colors.blue.withOpacity(0.5),
-      title: Text('text'),
-      pinned: true,
-    ));
-    slivers.add(SliverAppBar(
-      backgroundColor: Colors.yellow.withOpacity(0.5),
-      title: Text('text'),
-      pinned: true,
-    ));
     slivers.addAll(_buildHeaderBuilderLists(context, i, i += 5));
     slivers.addAll(_buildLists(context, i, i += 3));
     slivers.addAll(_buildGrids(context, i, i += 3));
@@ -57,6 +48,7 @@ class MainScreen extends StatelessWidget {
     return List.generate(count, (sliverIndex) {
       sliverIndex += firstIndex;
       return new SliverStickyHeader(
+        reverse: true,
         header: _buildHeader(sliverIndex),
         sliver: new SliverList(
           delegate: new SliverChildBuilderDelegate(
@@ -78,6 +70,7 @@ class MainScreen extends StatelessWidget {
     return List.generate(count, (sliverIndex) {
       sliverIndex += firstIndex;
       return new SliverStickyHeaderBuilder(
+        reverse: true,
         builder: (context, state) =>
             _buildAnimatedHeader(context, sliverIndex, state),
         sliver: new SliverList(
@@ -99,6 +92,7 @@ class MainScreen extends StatelessWidget {
     return List.generate(count, (sliverIndex) {
       sliverIndex += firstIndex;
       return new SliverStickyHeader(
+        reverse: true,
         header: _buildHeader(sliverIndex),
         sliver: new SliverGrid(
           gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
@@ -137,6 +131,7 @@ class MainScreen extends StatelessWidget {
     return List.generate(count, (sliverIndex) {
       sliverIndex += firstIndex;
       return new SliverStickyHeader(
+        reverse: true,
         overlapsContent: true,
         header: _buildSideHeader(context, sliverIndex),
         sliver: new SliverPadding(
@@ -235,6 +230,7 @@ class MainScreen extends StatelessWidget {
 
   Widget _buildExample() {
     return new SliverStickyHeader(
+      reverse: true,
       header: new Container(
         height: 60.0,
         color: Colors.lightBlue,
@@ -261,6 +257,7 @@ class MainScreen extends StatelessWidget {
 
   Widget _buildBuilderExample() {
     return new SliverStickyHeaderBuilder(
+      reverse: true,
       builder: (context, state) => new Container(
             height: 60.0,
             color: (state.isPinned ? Colors.pink : Colors.lightBlue)

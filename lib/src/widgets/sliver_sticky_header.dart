@@ -50,6 +50,7 @@ class SliverStickyHeader extends RenderObjectWidget {
     this.header,
     this.sliver,
     this.overlapsContent: false,
+    this.reverse: false,
   })  : assert(overlapsContent != null),
         super(key: key);
 
@@ -63,10 +64,15 @@ class SliverStickyHeader extends RenderObjectWidget {
   /// instead of before.
   final bool overlapsContent;
 
+  /// Whether the header should be drawn on the bottom of the sliver
+  /// instead of before. Could make sense in reversed lists.
+  final bool reverse;
+
   @override
   RenderSliverStickyHeader createRenderObject(BuildContext context) {
     return new RenderSliverStickyHeader(
       overlapsContent: overlapsContent,
+      reverse: reverse,
     );
   }
 
@@ -97,6 +103,7 @@ class SliverStickyHeaderBuilder extends StatelessWidget {
     @required this.builder,
     this.sliver,
     this.overlapsContent: false,
+    this.reverse: false,
   })  : assert(builder != null),
         assert(overlapsContent != null),
         super(key: key);
@@ -114,10 +121,15 @@ class SliverStickyHeaderBuilder extends StatelessWidget {
   /// instead of before.
   final bool overlapsContent;
 
+  /// Whether the header should be drawn on the bottom of the sliver
+  /// instead of before. Could make sense in reversed lists.
+  final bool reverse;
+
   @override
   Widget build(BuildContext context) {
     return new SliverStickyHeader(
       overlapsContent: overlapsContent,
+      reverse: reverse,
       sliver: sliver,
       header: new StickyHeaderLayoutBuilder(
         builder: (context, constraints) => builder(context, constraints.state),
